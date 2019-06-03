@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Execution Flow &mdash; Jenkins Templating Engine  documentation</title>
+  <title>Defining Non-Call Methods in Library Steps &mdash; Jenkins Templating Engine  documentation</title>
   
 
   
@@ -30,7 +30,9 @@
   <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/banner.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" /> 
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Validate Library Parameters" href="validate_library_parameters.html" />
+    <link rel="prev" title="Leverage Lifecycle Hooks" href="lifecycle_hooks.html" /> 
 
   
   <script src="../../_static/js/modernizr.min.js"></script>
@@ -79,7 +81,7 @@
               
             
             
-              <ul>
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../Templating/index.html">Pipeline Templating</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../Templating/configuration_files/index.html">Configuration Files</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../Templating/configuration_files/default_step_implementation.html">Default Step Implementation</a></li>
@@ -98,12 +100,12 @@
 <li class="toctree-l2"><a class="reference internal" href="../Governance/conditional_inheritance.html">Conditional Inheritance Examples</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../Library_Development/index.html">Library Development</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../Library_Development/externalizing_config.html">Externalizing Library Configuration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Library_Development/library_sources.html">Library Sources</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Library_Development/lifecycle_hooks.html">Leverage Lifecycle Hooks</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Library_Development/noncall_methods.html">Defining Non-Call Methods in Library Steps</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Library_Development/validate_library_parameters.html">Validate Library Parameters</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Library Development</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="externalizing_config.html">Externalizing Library Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="library_sources.html">Library Sources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lifecycle_hooks.html">Leverage Lifecycle Hooks</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Defining Non-Call Methods in Library Steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="validate_library_parameters.html">Validate Library Parameters</a></li>
 </ul>
 </li>
 </ul>
@@ -151,13 +153,15 @@
     
       <li><a href="../../index.html">Docs</a> &raquo;</li>
         
-      <li>Execution Flow</li>
+          <li><a href="index.html">Library Development</a> &raquo;</li>
+        
+      <li>Defining Non-Call Methods in Library Steps</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../../_sources/pages/Plugin_Development/execution_flow.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/pages/Library_Development/noncall_methods.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -176,8 +180,24 @@
 
 
 
-<div class="section" id="execution-flow">
-<h1>Execution Flow<a class="headerlink" href="#execution-flow" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="defining-non-call-methods-in-library-steps">
+<span id="noncall-methods"></span><h1>Defining Non-Call Methods in Library Steps<a class="headerlink" href="#defining-non-call-methods-in-library-steps" title="Permalink to this headline">¶</a></h1>
+<p>It is sometimes advantageous to define more steps than just the call method.</p>
+<p>Within the context of creating templates, this pattern comes up when defining internal methods
+used by library steps as opposed to being invoked directly by a template.</p>
+<p>For example:</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">test_step.groovy</span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
+<div class="highlight-groovy"><div class="highlight"><pre><span></span> <span class="kt">def</span> <span class="nf">printMessage</span><span class="o">(</span><span class="n">String</span> <span class="n">message</span><span class="o">){</span>
+     <span class="n">println</span> <span class="s2">&quot;the message is ${message}&quot;</span>
+ <span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<p>creates a step <code class="docutils literal"><span class="pre">test_step</span></code> that can be invoked via:</p>
+<div class="highlight-groovy"><div class="highlight"><pre><span></span><span class="n">test_step</span><span class="o">.</span><span class="na">printMessage</span><span class="o">(</span><span class="s2">&quot;example!&quot;</span><span class="o">)</span>
+</pre></div>
+</div>
 </div>
 
 
@@ -185,6 +205,15 @@
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="validate_library_parameters.html" class="btn btn-neutral float-right" title="Validate Library Parameters" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="lifecycle_hooks.html" class="btn btn-neutral" title="Leverage Lifecycle Hooks" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
@@ -215,12 +244,12 @@
     <div class="rst-other-versions">
         <dl>
             <dt>Tags</dt>
-            <dd><a href="../../../1.0.0/pages/Plugin_Development/execution_flow.html">1.0.0</a></dd>
-            <dd><a href="../../../v0.1-alpha/pages/Plugin_Development/execution_flow.html">v0.1-alpha</a></dd>
+            <dd><a href="../../../1.0.0/index.html">1.0.0</a></dd>
+            <dd><a href="../../../v0.1-alpha/index.html">v0.1-alpha</a></dd>
         </dl>
         <dl>
             <dt>Branches</dt>
-            <dd><a href="execution_flow.html">master</a></dd>
+            <dd><a href="noncall_methods.html">master</a></dd>
         </dl>
     </div>
 </div>

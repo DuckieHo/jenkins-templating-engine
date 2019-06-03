@@ -104,6 +104,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../Library_Development/externalizing_config.html">Externalizing Library Configuration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Library_Development/library_sources.html">Library Sources</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Library_Development/lifecycle_hooks.html">Leverage Lifecycle Hooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Library_Development/noncall_methods.html">Defining Non-Call Methods in Library Steps</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Library_Development/validate_library_parameters.html">Validate Library Parameters</a></li>
 </ul>
 </li>
@@ -278,7 +279,7 @@ they could allow application configurations to take precedence by setting <code 
 in the <code class="docutils literal"><span class="pre">application_environments</span></code> block.</p>
 <p><strong>Governance Tier Configuration</strong>:</p>
 <div class="code highlight-default"><div class="highlight"><pre><span></span><span class="n">application_environments</span><span class="p">{</span>
-    <span class="n">merge</span> <span class="o">=</span> <span class="n">true</span>
+    <span class="n">override</span> <span class="o">=</span> <span class="n">true</span>
     <span class="n">dev</span><span class="p">{</span>
         <span class="n">long_name</span> <span class="o">=</span> <span class="s2">&quot;Development&quot;</span>
     <span class="p">}</span>
